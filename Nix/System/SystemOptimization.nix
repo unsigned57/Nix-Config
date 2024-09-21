@@ -59,7 +59,6 @@
   };
 
   services = {
-    ntp.enable = true;
     fstrim.enable = true;
     irqbalance.enable = true;
     preload.enable = true;
@@ -67,7 +66,7 @@
     power-profiles-daemon.enable = false;
 
     udev.extraRules = ''
-      ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
+      ACTION=="add|change", KERNEL=="nvme[0-9]*n[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
     '';
 
     journald.extraConfig = ''

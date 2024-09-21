@@ -50,7 +50,7 @@
 
     kernelModules = [
       "jitterentropy_rng"
-      "mitigations=auto"
+      # "mitigations=auto"
     ];
 
     kernelParams = [
@@ -76,6 +76,16 @@
 
   services = {
     jitterentropy-rngd.enable = true;
+
+    chrony = {
+      enable = true;
+      enableNTS = true;
+      servers = [
+        "time.cloudflare.com"
+        "nts.sth1.ntp.se"
+        "nts.sth2.ntp.se"
+      ];
+    };
   };
 
   networking.networkmanager = {
@@ -97,7 +107,7 @@
 
     apparmor = {
       enable = true;
-      killUnconfinedConfinables = true;
+      # killUnconfinedConfinables = true;
     };
 
     pam = {

@@ -9,11 +9,9 @@
     zstd
     unzipNLS
     p7zip
-
-    btrfs-progs
-
+    bcachefs-tools
+    nixfmt-rfc-style
     zoxide
-    niri
     lsd
     bottom
     fzf
@@ -36,7 +34,7 @@
     upscayl
     localsend
     signal-desktop
-    anki
+    anki-bin
     telegram-desktop
   ];
 

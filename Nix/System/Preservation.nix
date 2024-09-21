@@ -18,10 +18,9 @@
         "/var/lib/libvirt"
         "/var/lib/systemd"
         "/var/lib/waydroid"
-        "/var/lib/cosmic-greeter"
         "/var/lib/flatpak"
         "/var/lib/NetworkManager"
-        "/var/lib/ntp"
+        "/var/lib/chrony"
         "/var/lib/lxc"
         "/var/lib/lxd"
         "/var/lib/qemu"
@@ -41,9 +40,6 @@
       ];
 
       files = [
-        "/etc/passwd"
-        "/etc/shadow"
-        "/etc/group"
         "/etc/daed/wing.db"
         # { file = "/etc/ssh/ssh_host_rsa_key"; mode = "0600"; }
         # { file = "/etc/ssh/ssh_host_ed25519_key"; mode = "0600"; }
