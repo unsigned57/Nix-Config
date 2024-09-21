@@ -1,13 +1,16 @@
-{lib,...}:
+{ lib, ... }:
 
 {
   networking = {
     hostName = "ephemeral";
     useDHCP = lib.mkDefault true;
-    firewall.allowedTCPPorts = [22 53317];
-    
+    firewall.allowedTCPPorts = [
+      22
+      53317
+    ];
+
     networkmanager = {
-      enable = true;         
+      enable = true;
     };
 
     timeServers = [

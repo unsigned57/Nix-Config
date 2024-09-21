@@ -1,4 +1,4 @@
-{pkgs,...}:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -11,7 +11,7 @@
     p7zip
 
     btrfs-progs
-       
+
     zoxide
     niri
     lsd
@@ -20,7 +20,7 @@
     mcfly
     fd
     yazi
-    fastfetch 
+    fastfetch
   ];
 
   users.users.ephemeral.packages = with pkgs; [

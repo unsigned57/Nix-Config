@@ -1,4 +1,9 @@
-{config,lib,pkgs,...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   preservation = {
@@ -21,27 +26,44 @@
         "/var/lib/lxd"
         "/var/lib/qemu"
 
-        { directory = "/var/lib/nixos"; inInitrd = true; }
-        { directory = "/var/log"; inInitrd = true; }
-        { directory = "/var/lib/private"; mode = "0700"; }
+        {
+          directory = "/var/lib/nixos";
+          inInitrd = true;
+        }
+        {
+          directory = "/var/log";
+          inInitrd = true;
+        }
+        {
+          directory = "/var/lib/private";
+          mode = "0700";
+        }
       ];
 
       files = [
         "/etc/passwd"
         "/etc/shadow"
-      	"/etc/group"
+        "/etc/group"
         "/etc/daed/wing.db"
         # { file = "/etc/ssh/ssh_host_rsa_key"; mode = "0600"; }
         # { file = "/etc/ssh/ssh_host_ed25519_key"; mode = "0600"; }
         # { file = "/etc/ssh/ssh_host_rsa_key.pub"; mode = "0644"; }
         # { file = "/etc/ssh/ssh_host_ed25519_key.pub"; mode = "0644"; }
-        { file = "/var/lib/systemd/random-seed"; how = "symlink"; inInitrd = true; configureParent = true; }
+        {
+          file = "/var/lib/systemd/random-seed";
+          how = "symlink";
+          inInitrd = true;
+          configureParent = true;
+        }
       ];
 
       users = {
         ephemeral = {
           directories = [
-            { directory = ".ssh"; mode = "0700"; }
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
             "Documents"
             "Downloads"
             "Distrobox"
@@ -53,8 +75,14 @@
             "Nix-Config"
             ".android"
             ".cache"
-            { directory = ".local"; user = "ephemeral"; }
-            { directory = ".config"; user = "ephemeral"; }
+            {
+              directory = ".local";
+              user = "ephemeral";
+            }
+            {
+              directory = ".config";
+              user = "ephemeral";
+            }
             ".steam"
             ".var"
           ];
@@ -66,14 +94,14 @@
       };
     };
   };
- 
+
   systemd = {
     services = {
       systemd-journal-flush = {
-        before = ["shutdown.target"];
-        conflicts = ["shutdown.target"];
+        before = [ "shutdown.target" ];
+        conflicts = [ "shutdown.target" ];
       };
-      
+
       nix-daemon = {
         environment = {
           TMPDIR = "/nix/Cache/nix";
@@ -82,7 +110,7 @@
           CacheDirectory = "nix";
         };
       };
-    }; 
+    };
   };
 
   boot.initrd.systemd = {

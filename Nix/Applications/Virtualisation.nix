@@ -1,12 +1,12 @@
-{pkgs,...}:
+{ pkgs, ... }:
 
 {
   virtualisation = {
     containers.enable = true;
-    
+
     lxd.enable = true;
     waydroid.enable = true;
-    
+
     libvirtd = {
       enable = true;
       qemu.runAsRoot = true;
@@ -19,7 +19,7 @@
   };
 
   boot = {
-    kernelModules = ["vfio-pci"];
+    kernelModules = [ "vfio-pci" ];
     extraModprobeConfig = ''
       options kvm ignore_msrs=1
     '';

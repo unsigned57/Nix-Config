@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   boot = {
@@ -36,11 +36,11 @@
       "net.netfilter.nf_conntrack_max" = 1048576;
       "net.netfilter.nf_conntrack_tcp_timeout_established" = 600;
       "net.netfilter.nf_conntrack_tcp_timeout_time_wait" = 1;
-#      "vm.dirty_ratio" = 10;
-#      "vm.dirty_background_ratio" = 5;
+      #      "vm.dirty_ratio" = 10;
+      #      "vm.dirty_background_ratio" = 5;
       "vm.max_map_count" = 2147483642;
-#      "vm.swappiness" = 10;
-#      "vm.vfs_cache_pressure" = 50;
+      #      "vm.swappiness" = 10;
+      #      "vm.vfs_cache_pressure" = 50;
       "kernel.sched_autogroup_enabled" = 1;
     };
 
@@ -50,7 +50,7 @@
       "transparent_hugepage=madvise"
       # "numa_balancing=enable"
       # "amd_pstate=active"
-      "watchdog_thresh=60" 
+      "watchdog_thresh=60"
       # "quiet"
       # "splash"
     ];
@@ -91,7 +91,7 @@
       enableSystemSlice = true;
       enableUserSlices = true;
     };
-    
+
     extraConfig = ''
       DefaultTimeoutStartSec=20s
       DefaultTimeoutStopSec=20s
@@ -100,5 +100,5 @@
       DefaultTimeoutStartSec=20s
       DefaultTimeoutStopSec=20s
     '';
-  };  
+  };
 }

@@ -1,14 +1,22 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   nix = {
     channel.enable = false;
-    
+
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
- 
-      trusted-users = ["ephemeral"];
+
+      trusted-users = [ "ephemeral" ];
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
@@ -31,16 +39,16 @@
       NIXOS_OZONE_WL = "1";
       SDL_VIDEODRIVER = "wayland";
     };
-    
+
     variables = {
       NIX_REMOTE = "daemon";
     };
-    
+
     systemPackages = with pkgs; [
       nixVersions.latest
     ];
   };
-  
+
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = lib.mkDefault "x86_64-linux";
@@ -54,7 +62,6 @@
     clean.extraArgs = "--keep-since 7d --keep 3";
     flake = "/home/ephemeral/Nix-Config";
   };
- 
+
   system.stateVersion = "24.05";
 }
-

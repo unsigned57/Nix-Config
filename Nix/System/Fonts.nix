@@ -1,4 +1,4 @@
-{pkgs,...}:
+{ pkgs, ... }:
 
 {
   fonts = {
@@ -21,7 +21,7 @@
       source-serif
       source-han-sans
       source-han-serif
-      
+
       dejavu_fonts
       julia-mono
 
@@ -40,10 +40,21 @@
       enable = true;
       subpixel.rgba = "rgb";
       defaultFonts = {
-        serif = ["Source Han Serif SC" "Source Han Serif TC" "Noto Color Emoji"];
-        sansSerif = ["Source Han Sans SC" "Source Han Sans TC" "Noto Color Emoji"];
-        monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-        emoji = ["Noto Color Emoji"];
+        serif = [
+          "Source Han Serif SC"
+          "Source Han Serif TC"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Source Han Sans SC"
+          "Source Han Sans TC"
+          "Noto Color Emoji"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Noto Color Emoji"
+        ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

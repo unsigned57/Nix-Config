@@ -1,9 +1,9 @@
-{config,...}:
+{ config, ... }:
 
 {
   users.users.ephemeral = {
     isNormalUser = true;
-    extraGroups = [ 
+    extraGroups = [
       "wheel"
       "users"
       "networkmanager"

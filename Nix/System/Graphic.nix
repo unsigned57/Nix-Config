@@ -1,13 +1,13 @@
-{pkgs,...}:
+{ pkgs, ... }:
 
 {
-  chaotic = {    
+  chaotic = {
     hdr = {
       enable = true;
-      specialisation.enable = false ;
+      specialisation.enable = false;
     };
   };
-  
+
   hardware = {
     graphics = {
       enable = true;

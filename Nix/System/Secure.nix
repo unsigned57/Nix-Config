@@ -1,4 +1,9 @@
-{pkgs,lib,config,...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   environment = {
@@ -7,7 +12,9 @@
       tpm2-tools
     ];
 
-    memoryAllocator = { provider = "scudo"; };
+    memoryAllocator = {
+      provider = "scudo";
+    };
 
     etc = {
       "modprobe.d/nm-disable-intelme-kmodules.conf" = {
@@ -92,12 +99,22 @@
       enable = true;
       killUnconfinedConfinables = true;
     };
-  
+
     pam = {
       loginLimits = [
-        { domain = "*"; type = "soft"; item = "nofile"; value = "524288"; }
-        { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
+        {
+          domain = "*";
+          type = "soft";
+          item = "nofile";
+          value = "524288";
+        }
+        {
+          domain = "*";
+          type = "hard";
+          item = "nofile";
+          value = "1048576";
+        }
       ];
     };
-  }; 
+  };
 }
