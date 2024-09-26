@@ -82,6 +82,7 @@
       enableNTS = true;
       servers = [
         "time.cloudflare.com"
+        "nts.ntp.se"
         "nts.sth1.ntp.se"
         "nts.sth2.ntp.se"
       ];
@@ -107,7 +108,7 @@
 
     apparmor = {
       enable = true;
-      # killUnconfinedConfinables = true;
+      killUnconfinedConfinables = true;
     };
 
     pam = {

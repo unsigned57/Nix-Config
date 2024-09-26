@@ -3,9 +3,13 @@
 {
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
+    shellInit = ''
       set fish_greeting #
+
       zoxide init fish | source
+
+      set -U HISTSIZE 50000
+      set -U HISTFILESIZE 10000
     '';
   };
 

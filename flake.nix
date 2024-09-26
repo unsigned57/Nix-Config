@@ -2,20 +2,26 @@
   description = "my flake config";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+    };
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
 
-    daeuniverse.url = "github:daeuniverse/flake.nix/unstable";
+    daeuniverse = {
+      url = "github:daeuniverse/flake.nix";
+    };
 
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
@@ -27,11 +33,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
 
-    preservation.url = "github:WilliButz/preservation";
-
-    # agenix.url = "github:ryantm/agenix";
+    preservation = {
+      url = "github:WilliButz/preservation";
+    };
   };
 
   outputs =
@@ -45,17 +53,16 @@
       lanzaboote,
       impermanence,
       preservation,
-      # agenix,
       ...
     }:
+    let
+      system = "x86_64-linux";
+    in
     {
       nixosConfigurations.ephemeral = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
         modules = [
           ./Nix/System
           ./Nix/Applications
-
-          chaotic.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
@@ -74,6 +81,8 @@
             };
           }
 
+          chaotic.nixosModules.default
+
           inputs.daeuniverse.nixosModules.dae
           inputs.daeuniverse.nixosModules.daed
 
@@ -84,8 +93,6 @@
           impermanence.nixosModules.impermanence
 
           preservation.nixosModules.preservation
-
-          # agenix.nixosModules.default
         ];
       };
     };

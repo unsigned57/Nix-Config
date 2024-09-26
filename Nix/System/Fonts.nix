@@ -10,9 +10,9 @@
       font-awesome
 
       noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      noto-fonts-extra
+      # noto-fonts-cjk
+      # noto-fonts-emoji
+      # noto-fonts-extra
 
       wqy_zenhei
       wqy_microhei

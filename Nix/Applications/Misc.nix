@@ -9,7 +9,6 @@
     zstd
     unzipNLS
     p7zip
-    bcachefs-tools
     nixfmt-rfc-style
     zoxide
     lsd
@@ -35,6 +34,8 @@
     localsend
     signal-desktop
     anki-bin
+    ocrmypdf
+    cmd-wrapped
     telegram-desktop
   ];
 

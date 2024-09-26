@@ -25,4 +25,10 @@
   swapDevices = [
     { device = "/dev/disk/by-uuid/62b83721-ce98-48db-b1d1-88e179b9eac5"; }
   ];
+
+  environment.systemPackages = with pkgs; [
+    f2fs-tools
+    bcachefs-tools
+    exfatprogs
+  ];
 }
