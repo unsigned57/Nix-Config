@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  services = {
+    syncthing = {
+      enable = true;
+    };
+  };
+
   systemd = {
     services.compress-and-move = {
       description = "Compress directory and move to destination, then delete the previous backup";

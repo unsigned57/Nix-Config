@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   fileSystems."/" = {
@@ -25,6 +25,18 @@
   swapDevices = [
     { device = "/dev/disk/by-uuid/62b83721-ce98-48db-b1d1-88e179b9eac5"; }
   ];
+
+  fileSystems."/run/media/ephemeral/linux" = {
+    device = "/dev/disk/by-uuid/a1073e69-cf98-4198-99e5-c819a6c3317b";
+    fsType = "f2fs";
+    options = [
+      "compress_algorithm=zstd:6"
+      "compress_chksum"
+      "atgc"
+      "gc_merge"
+      "lazytime"
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
     f2fs-tools

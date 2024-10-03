@@ -25,6 +25,22 @@
     '';
   };
 
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        53
+        67
+      ];
+      trustedInterfaces = [ "waydroid0" ];
+    };
+
+    nat = {
+      enable = true;
+      externalInterface = "dae0";
+      internalInterfaces = [ "waydroid0" ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     virt-manager
     qemu_kvm

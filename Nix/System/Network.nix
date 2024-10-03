@@ -1,13 +1,17 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   networking = {
     hostName = "ephemeral";
     useDHCP = lib.mkDefault true;
-    firewall.allowedTCPPorts = [
-      22
-      53317
-    ];
+    nftables.enable = true;
+    firewall = {
+      package = pkgs.iptables-nftables-compat;
+      allowedTCPPorts = [
+        22
+        53317
+      ];
+    };
 
     networkmanager = {
       enable = true;

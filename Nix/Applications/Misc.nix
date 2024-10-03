@@ -37,6 +37,8 @@
     ocrmypdf
     cmd-wrapped
     telegram-desktop
+    amberol
+    onlyoffice-desktopeditors
   ];
 
   programs = {

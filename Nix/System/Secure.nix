@@ -45,12 +45,12 @@
 
     lanzaboote = {
       enable = true;
-      pkiBundle = "/nix/persistent/etc/secureboot";
+      pkiBundle = "/etc/secureboot";
     };
 
     kernelModules = [
       "jitterentropy_rng"
-      # "mitigations=auto"
+      "mitigations=auto"
     ];
 
     kernelParams = [
