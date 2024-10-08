@@ -36,6 +36,7 @@
     anki-bin
     ocrmypdf
     cmd-wrapped
+    vscode
     telegram-desktop
     amberol
     onlyoffice-desktopeditors

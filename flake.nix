@@ -63,6 +63,7 @@
         modules = [
           ./Nix/System
           ./Nix/Applications
+          ./Modules
 
           home-manager.nixosModules.home-manager
           {
