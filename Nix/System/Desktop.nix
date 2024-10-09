@@ -45,6 +45,7 @@
         gnome-maps
         gnome-music
         gnome-software
+        gnome-console
         gnome-connections
         gnome-contacts
         gnome-tour
@@ -67,6 +68,7 @@
         pano
         extension-list
         vitals
+        syncthing-indicator
       ]);
   };
 

@@ -7,6 +7,8 @@
     lz4
     xz
     zstd
+    parallel
+    gnutar
     unzipNLS
     p7zip
     nixfmt-rfc-style
@@ -18,6 +20,7 @@
     fd
     yazi
     fastfetch
+    ptyxis
   ];
 
   users.users.ephemeral.packages = with pkgs; [
@@ -36,7 +39,6 @@
     anki-bin
     ocrmypdf
     cmd-wrapped
-    vscode
     telegram-desktop
     amberol
     onlyoffice-desktopeditors

@@ -32,21 +32,26 @@
           name = "obsidian";
           sourceDir = "/home/ephemeral/Documents/Obsidian";
           destDir = "/run/media/ephemeral/linux/Backup";
-          compress = true;
-          compressionMethod = "zstd";
-          compressionLevel = 3;
+          compressionMethod = "zip";
+          compressionLevel = 6;
+          versionsToKeep = 3;
+          interval = "1d";
+          user = "ephemeral";
+          group = "users";
         }
+
         {
-          name = "documents";
-          sourceDir = "/home/ephemeral/Documents";
-          destDir = "/run/media/ephemeral/external_drive/Backup";
-          compress = true;
-          compressionMethod = "xz";
-          compressionLevel = 9;
+          name = "Book";
+          sourceDir = "/home/ephemeral/Documents/Book";
+          destDir = "/run/media/ephemeral/win/";
+          compressionMethod = "none";
+          versionsToKeep = 1;
+          incremental = true;
+          interval = "2d";
+          user = "ephemeral";
+          group = "users";
         }
       ];
-      interval = "2d";
-      user = "ephemeral";
     };
   };
 
