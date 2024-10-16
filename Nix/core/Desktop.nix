@@ -37,6 +37,7 @@
         epiphany
         evince
         totem
+        xterm
         tali
         iagno
         hitori

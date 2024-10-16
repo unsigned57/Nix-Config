@@ -50,7 +50,6 @@
 
     kernelModules = [
       "jitterentropy_rng"
-      "mitigations=auto"
     ];
 
     kernelParams = [

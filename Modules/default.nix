@@ -2,6 +2,7 @@
 
 {
   imports = [
-    ./backup-module.nix
+    ./Backup.nix
+    ./Textformat.nix
   ];
 }

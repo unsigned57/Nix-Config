@@ -6,7 +6,7 @@
     ./Shell.nix
     ./Virtualisation.nix
     ./Editor.nix
-    ./Misc.nix
+    ./Packages.nix
     ./Git.nix
     ./InputMethod.nix
     ./Flatpak.nix

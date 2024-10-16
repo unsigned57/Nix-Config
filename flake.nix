@@ -33,10 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
-
     preservation = {
       url = "github:WilliButz/preservation";
     };
@@ -51,7 +47,6 @@
       chaotic,
       nix-flatpak,
       lanzaboote,
-      impermanence,
       preservation,
       ...
     }:
@@ -61,8 +56,8 @@
     {
       nixosConfigurations.ephemeral = nixpkgs.lib.nixosSystem rec {
         modules = [
-          ./Nix/System
-          ./Nix/Applications
+          ./Nix/core
+          ./Nix/extra
           ./Modules
 
           home-manager.nixosModules.home-manager
@@ -76,7 +71,7 @@
               users = {
                 ephemeral.imports = [
                   nix-flatpak.homeManagerModules.nix-flatpak
-                  ./Nix/Applications/home.nix
+                  ./Nix/extra/home.nix
                 ];
               };
             };
@@ -90,8 +85,6 @@
           nixos-cosmic.nixosModules.default
 
           lanzaboote.nixosModules.lanzaboote
-
-          impermanence.nixosModules.impermanence
 
           preservation.nixosModules.preservation
         ];

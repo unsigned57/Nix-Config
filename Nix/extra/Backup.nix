@@ -12,7 +12,7 @@
       settings = {
         devices = {
           "pixel" = {
-            id = "45FRUN5-UQJ6ZMO-6ZD5AVC-5XCFSRT-NC36XLU-5WNFRE7-DWLEYMR-7ZUR4AR";
+            id = "ECY62PQ-VQVYNWN-SQRQ5D6-CRRNCGL-QXYJUWM-DB7JM6F-OLSQHW2-GU6GHQ2";
           };
         };
         folders = {
@@ -25,33 +25,28 @@
       };
     };
 
-    flexibleBackup = {
+    tempus = {
       enable = true;
-      tasks = [
-        {
-          name = "obsidian";
-          sourceDir = "/home/ephemeral/Documents/Obsidian";
-          destDir = "/run/media/ephemeral/linux/Backup";
-          compressionMethod = "zip";
-          compressionLevel = 6;
-          versionsToKeep = 3;
-          interval = "1d";
+      tasks = {
+        obsidian = {
+          src = "/home/ephemeral/Documents/Obsidian";
+          dst = "/run/media/ephemeral/linux/Backup";
+          compress = "zip";
+          keep = "10d";
+          freq = "daily";
           user = "ephemeral";
           group = "users";
-        }
+        };
 
-        {
-          name = "Book";
-          sourceDir = "/home/ephemeral/Documents/Book";
-          destDir = "/run/media/ephemeral/win/";
-          compressionMethod = "none";
-          versionsToKeep = 1;
-          incremental = true;
-          interval = "2d";
+        book = {
+          src = "/home/ephemeral/Documents/Book";
+          dst = "/run/media/ephemeral/win/";
+          compress = "none";
+          freq = "daily";
           user = "ephemeral";
           group = "users";
-        }
-      ];
+        };
+      };
     };
   };
 
