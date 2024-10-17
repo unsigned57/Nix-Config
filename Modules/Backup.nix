@@ -28,9 +28,9 @@ let
         type = types.enum [
           "none"
           "zip"
-          "rar"
-          "7z"
-          "zstd"
+          "tar.gz"
+          "tar.bz2"
+          "tar.xz"
         ];
         default = "none";
         description = "Compression format for backups.";
@@ -91,8 +91,33 @@ in
         description = "Tempus backup service for ${name}";
         script =
           let
-            compressCmd =
-              if task.compress == "none" then "" else "${pkgs.${task.compress}}/bin/${task.compress}";
+            compressCmd = pkgs.writeScript "compress-${name}.sh" (
+              if task.compress == "none" then
+                ""
+              else
+                ''
+                  #!${pkgs.bash}/bin/bash
+                  src="$1"
+                  dst="$2"
+                  src_dir=$(dirname "$src")
+                  src_base=$(basename "$src")
+                  cd "$src_dir"
+                  case "${task.compress}" in
+                    zip)
+                      ${pkgs.zip}/bin/zip -r "$dst" "$src_base"
+                      ;;
+                    tar.gz)
+                      ${pkgs.gnutar}/bin/tar czf "$dst" "$src_base"
+                      ;;
+                    tar.bz2)
+                      ${pkgs.gnutar}/bin/tar cjf "$dst" "$src_base"
+                      ;;
+                    tar.xz)
+                      ${pkgs.gnutar}/bin/tar cJf "$dst" "$src_base"
+                      ;;
+                  esac
+                ''
+            );
             backupScript = pkgs.writeScript "tempus-${name}.sh" ''
               #!${pkgs.bash}/bin/bash
               set -euo pipefail
@@ -104,13 +129,18 @@ in
               timestamp=$(date +%Y%m%d_%H%M%S)
 
               if [[ "${task.compress}" != "none" ]]; then
-                ${compressCmd} "$dst/${name}_$timestamp.${task.compress}" "$src"
+                ${compressCmd} "$src" "$dst/${name}_$timestamp.${task.compress}"
               else
-                ${pkgs.rsync}/bin/rsync -a --delete "$src/" "$dst/${name}_$timestamp/"
+                ${pkgs.rsync}/bin/rsync -a --delete "$src/" "$dst/${name}/"
               fi
 
               # Clean up old backups
-              ${pkgs.findutils}/bin/find "$dst" -name "${name}_*" -type d -mtime +''${keep%d} -exec rm -rf {} +
+              if [[ "${task.compress}" != "none" ]]; then
+                ${pkgs.findutils}/bin/find "$dst" -name "${name}_*" -type f -mtime +''${keep%d} -delete
+              else
+                # For non-compressed backups, we're not using timestamps, so we don't need to clean up
+                : # No-op
+              fi
             '';
           in
           "${backupScript}";
