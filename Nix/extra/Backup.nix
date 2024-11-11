@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  environment = {
+    systemPackages = with pkgs; [
+      rustic
+    ];
+  };
+
   services = {
     syncthing = {
       enable = true;
@@ -21,30 +27,6 @@
             devices = [ "pixel" ];
             ignorePerms = false;
           };
-        };
-      };
-    };
-
-    tempus = {
-      enable = true;
-      tasks = {
-        obsidian = {
-          src = "/home/ephemeral/Documents/Obsidian";
-          dst = "/run/media/ephemeral/linux/Backup";
-          compress = "zip";
-          keep = "10d";
-          freq = "daily";
-          user = "ephemeral";
-          group = "users";
-        };
-
-        book = {
-          src = "/home/ephemeral/Documents/Book";
-          dst = "/run/media/ephemeral/win/";
-          compress = "none";
-          freq = "daily";
-          user = "ephemeral";
-          group = "users";
         };
       };
     };

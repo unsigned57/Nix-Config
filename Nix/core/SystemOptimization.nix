@@ -82,9 +82,9 @@
     ksm.enable = true;
   };
 
-  chaotic.scx = {
-    enable = true;
-  };
+  # chaotic.scx = {
+  #   enable = true;
+  # };
 
   systemd = {
     oomd = {
