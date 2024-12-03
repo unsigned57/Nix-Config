@@ -22,34 +22,6 @@
       fsType = "vfat";
       options = [ "umask=0077" ];
     };
-
-    "/run/media/ephemeral/linux" = {
-      device = "/dev/disk/by-uuid/a1073e69-cf98-4198-99e5-c819a6c3317b";
-      fsType = "f2fs";
-      options = [
-        "nofail"
-        "compress_algorithm=zstd:6"
-        "compress_chksum"
-        "atgc"
-        "gc_merge"
-        "lazytime"
-      ];
-    };
-
-    "/run/media/ephemeral/win" = {
-      device = "/dev/disk/by-uuid/77F3-F32B";
-      fsType = "exfat";
-      options = [
-        "nofail"
-        "uid=1000"
-        "gid=100"
-        "fmask=0133"
-        "dmask=0022"
-        "iocharset=utf8"
-        "errors=remount-ro"
-        "discard"
-      ];
-    };
   };
 
   swapDevices = [
@@ -65,19 +37,13 @@
 
   services = {
     udisks2.enable = true;
-    devmon.enable = true;
     gvfs.enable = true;
-
     udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="a1073e69-cf98-4198-99e5-c819a6c3317b", \
-      RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --collect \
-      --options=compress_algorithm=zstd:6,compress_chksum,atgc,gc_merge,lazytime \
-      /dev/disk/by-uuid/a1073e69-cf98-4198-99e5-c819a6c3317b /run/media/%E/linux"
+      ACTION=="add|change", SUBSYSTEM=="block", ENV{ID_FS_TYPE}=="f2fs", \
+      ENV{UDISKS_MOUNT_OPTIONS_DEFAULTS}="compress_algorithm=zstd:6,compress_chksum,atgc,gc_merge,lazytime"
 
-      ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="77F3-F32B", \
-      RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --collect \
-      --options=uid=%E,gid=%E,fmask=0133,dmask=0022,iocharset=utf8,errors=remount-ro,discard \
-      /dev/disk/by-uuid/77F3-F32B /run/media/%E/win"
+      ACTION=="add|change", SUBSYSTEM=="block", ENV{ID_FS_TYPE}=="exfat", \
+      ENV{UDISKS_MOUNT_OPTIONS_DEFAULTS}="uid=$UID,gid=100,fmask=0133,dmask=0022,iocharset=utf8,errors=remount-ro"
     '';
   };
 }

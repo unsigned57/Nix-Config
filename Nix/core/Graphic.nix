@@ -13,7 +13,7 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # amdvlk
+        amdvlk
         ffmpeg_7-full
         libvdpau-va-gl
       ];

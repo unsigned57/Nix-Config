@@ -38,13 +38,12 @@
     newsflash
     loupe
     clapper
-    mission-center
+    # mission-center
     wthrr
     kalker
     genact
     upscayl
     localsend
-    signal-desktop
     anki-bin
     ocrmypdf
     cmd-wrapped

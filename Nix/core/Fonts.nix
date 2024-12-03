@@ -2,7 +2,7 @@
 
 {
   fonts = {
-    enableDefaultPackages = false;
+    enableDefaultPackages = true;
     fontDir.enable = true;
 
     packages = with pkgs; [
@@ -22,15 +22,11 @@
       dejavu_fonts
       julia-mono
 
-      (nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-          "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "Iosevka"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.symbols-only
     ];
 
     fontconfig = {

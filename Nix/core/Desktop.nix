@@ -2,21 +2,21 @@
 
 {
   services = {
-    xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-      videoDrivers = [ "amdgpu" ];
-    };
-
-    # displayManager = {
+    # xserver = {
     #   enable = true;
-    #   cosmic-greeter.enable = true;
+    #   displayManager.gdm.enable = true;
+    #   desktopManager.gnome.enable = true;
+    #   videoDrivers = [ "amdgpu" ];
     # };
 
-    #   desktopManager = {
-    #     cosmic.enable = true;
-    #   };
+    displayManager = {
+      #   enable = true;
+      cosmic-greeter.enable = true;
+    };
+
+    desktopManager = {
+      cosmic.enable = true;
+    };
 
     #   greetd = {
     #     enable = true;
@@ -30,67 +30,67 @@
     #   };
   };
 
-  environment = {
-    gnome = {
-      excludePackages = with pkgs; [
-        cheese
-        epiphany
-        evince
-        totem
-        xterm
-        tali
-        iagno
-        hitori
-        atomix
-        geary
-        gnome-maps
-        gnome-music
-        gnome-software
-        gnome-console
-        gnome-connections
-        gnome-contacts
-        gnome-tour
-        yelp
-      ];
-    };
+  # environment = {
+  #   gnome = {
+  #     excludePackages = with pkgs; [
+  #       cheese
+  #       epiphany
+  #       evince
+  #       totem
+  #       xterm
+  #       tali
+  #       iagno
+  #       hitori
+  #       atomix
+  #       geary
+  #       gnome-maps
+  #       gnome-music
+  #       gnome-software
+  #       gnome-console
+  #       gnome-connections
+  #       gnome-contacts
+  #       gnome-tour
+  #       yelp
+  #     ];
+  #   };
 
-    systemPackages =
-      (with pkgs; [
-        gnome-tweaks
-        bibata-cursors
-      ])
-      ++ (with pkgs.gnomeExtensions; [
-        blur-my-shell
-        paperwm
-        runcat
-        clipboard-indicator
-        media-controls
-        top-bar-organizer
-        pano
-        extension-list
-        vitals
-        syncthing-indicator
-      ]);
-  };
+  #   systemPackages =
+  #     (with pkgs; [
+  #       gnome-tweaks
+  #       bibata-cursors
+  #     ])
+  #     ++ (with pkgs.gnomeExtensions; [
+  #       blur-my-shell
+  #       paperwm
+  #       runcat
+  #       clipboard-indicator
+  #       media-controls
+  #       top-bar-organizer
+  #       pano
+  #       extension-list
+  #       vitals
+  #       syncthing-indicator
+  #     ]);
+  # };
 
-  nixpkgs = {
-    config.allowAliases = false;
-    overlays = [
-      (final: prev: {
-        gnome = prev.gnome.overrideScope (
-          gnomeFinal: gnomePrev: {
-            mutter = gnomePrev.mutter.overrideAttrs (old: {
-              src = pkgs.fetchFromGitLab {
-                domain = "gitlab.gnome.org";
-                owner = "vanvugt";
-                repo = "mutter";
-                rev = "triple-buffering-v4-46";
-                hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
-              };
-            });
-          }
-        );
-      })
-    ];
-  };
+  # nixpkgs = {
+  #   config.allowAliases = false;
+  #   overlays = [
+  #     (final: prev: {
+  #       gnome = prev.gnome.overrideScope (
+  #         gnomeFinal: gnomePrev: {
+  #           mutter = gnomePrev.mutter.overrideAttrs (old: {
+  #             src = pkgs.fetchFromGitLab {
+  #               domain = "gitlab.gnome.org";
+  #               owner = "vanvugt";
+  #               repo = "mutter";
+  #               rev = "triple-buffering-v4-46";
+  #               hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+  #             };
+  #           });
+  #         }
+  #       );
+  #     })
+  #   ];
+  # };
 }

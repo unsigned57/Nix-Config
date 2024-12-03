@@ -16,6 +16,7 @@
         "/etc/NetworkManager/system-connections"
         "/var/lib/bluetooth"
         "/var/lib/libvirt"
+        "/var/lib/cosmic-greeter"
         "/var/lib/systemd"
         "/var/lib/waydroid"
         "/var/lib/flatpak"
